@@ -1,14 +1,14 @@
 <template>
-  <div>product</div>
+  <div>
+    <NavMenu />
+    <nuxt />
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'Product',
-  layout: 'header'
 }
 </script>
 
 <style scoped>
-
 </style>

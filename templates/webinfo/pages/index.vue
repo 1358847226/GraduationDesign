@@ -1,13 +1,17 @@
 <template>
   <div>
-    <nuxt-link to="Product">
-      产品
-    </nuxt-link>
+    index
   </div>
 </template>
 
 <script>
 export default {
-  name: 'IndexPage'
+  name: 'IndexPage',
+  layout: 'header',
+  data () {
+    return {
+      childName: ''
+    }
+  }
 }
 </script>

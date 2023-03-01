@@ -2,8 +2,9 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'webinfo',
+    bodyAttrs: { style: 'height: 100%; margin:0; padding: 0;' },
     htmlAttrs: {
-      lang: 'en'
+      lang: 'zh'
     },
     meta: [
       { charset: 'utf-8' },
