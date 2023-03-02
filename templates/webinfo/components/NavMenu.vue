@@ -1,30 +1,31 @@
 <template>
   <div class="header">
     <el-menu
-      :default-active="activeIndex2"
-      class="el-menu-demo"
+      :default-active="activeIndex"
+      class="nav"
       mode="horizontal"
-      background-color="#545c64"
+      background-color="#001E1E"
       text-color="#fff"
       active-text-color="#ffd04b"
     >
-      <el-menu-item index="1" @click="$router.push({path: '/'})">主页</el-menu-item>
-      <el-submenu index="2">
-        <template slot="title">我的工作台</template>
-        <el-menu-item index="2-1">选项1</el-menu-item>
-        <el-menu-item index="2-2">选项2</el-menu-item>
-        <el-menu-item index="2-3">选项3</el-menu-item>
-        <el-submenu index="2-4">
-          <template slot="title">选项4</template>
-          <el-menu-item index="2-4-1">选项1</el-menu-item>
-          <el-menu-item index="2-4-2">选项2</el-menu-item>
-          <el-menu-item index="2-4-3">选项3</el-menu-item>
-        </el-submenu>
-      </el-submenu>
-      <el-menu-item index="3" @click="$router.push({path: 'Product'})">产品中心</el-menu-item>
+      <div class="logo">
+        <img class="logo-img" src="../assets/ITHelpYou.png" alt="it help you, it帮你">
+      </div>
+      <el-menu-item index="1" @click="$router.push({path: '/'})">
+        主页
+      </el-menu-item>
+      <el-menu-item index="2" @click="$router.push({path: 'Product'})">
+        作品大全
+      </el-menu-item>
+      <el-input
+        v-model="search"
+        class="search"
+        placeholder="请输入内容"
+        prefix-icon="el-icon-search"
+        size="medium"
+      />
     </el-menu>
   </div>
-
 </template>
 
 <script>
@@ -33,8 +34,7 @@ export default {
   data () {
     return {
       activeIndex: '1',
-      activeIndex2: '1',
-      childName: 'ChildIndex'
+      search: ''
     }
   },
   methods: {
@@ -43,8 +43,28 @@ export default {
 </script>
 
 <style scoped>
+.logo {
+  width: 200px;
+  height: 60px;
+  float: left;
+}
+.logo-img {
+  margin-top: 5px;
+}
 .header{
   top:0;
   position: sticky;
+  background-color: #001E1E;
+  opacity: 0.8;
+}
+.nav {
+  border: black;
+  text-align: center;
+  margin: 0 320px;
+}
+.search {
+  width: 200px;
+  float: right;
+  margin-top: 12px;
 }
 </style>
