@@ -15,7 +15,16 @@
         主页
       </el-menu-item>
       <el-menu-item index="2" @click="$router.push({path: 'Product'})">
+        关于我们
+      </el-menu-item>
+      <el-menu-item index="3" @click="$router.push({path: 'Product'})">
         作品大全
+      </el-menu-item>
+      <el-menu-item index="4" @click="$router.push({path: 'Product'})">
+        自助投稿
+      </el-menu-item>
+      <el-menu-item index="5" @click="$router.push({path: 'Product'})">
+        联系我们
       </el-menu-item>
       <el-input
         v-model="search"
@@ -56,6 +65,7 @@ export default {
   position: sticky;
   background-color: #001E1E;
   opacity: 0.8;
+  z-index: 999;
 }
 .nav {
   border: black;

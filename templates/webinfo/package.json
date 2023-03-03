@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
+    "animate.css": "^4.1.1",
     "core-js": "^3.25.3",
     "element-ui": "^2.15.10",
     "nuxt": "^2.15.8",
@@ -26,6 +27,7 @@
     "@nuxtjs/eslint-module": "^3.1.0",
     "eslint": "^8.24.0",
     "eslint-plugin-nuxt": "^4.0.0",
-    "eslint-plugin-vue": "^9.5.1"
+    "eslint-plugin-vue": "^9.5.1",
+    "wowjs": "^1.1.3"
   }
 }
