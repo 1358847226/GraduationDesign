@@ -18,7 +18,7 @@ const WOW const WOW
       <h2 class="center-text wow animate__lightSpeedInRight">
         优秀作品
       </h2>
-      <div>
+      <div class="wow animate__lightSpeedInLeft">
         <el-carousel :interval="4000" type="card" height="400px">
           <el-carousel-item v-for="item in 6" :key="item">
             <img :src="require('../assets/excellence' + item + '.jpg')" alt="" width="640px">
@@ -28,11 +28,11 @@ const WOW const WOW
           </el-carousel-item>
         </el-carousel>
       </div>
-      <h2 class="center-text wow animate__lightSpeedInLeft">
+      <h2 class="center-text wow animate__lightSpeedInRight">
         最新分享
       </h2>
-      <div class="new-share">
-        <el-card :body-style="{ padding: '0px', margin: '5px 0' }" v-for="item in 6" :key="item" style="margin-bottom: 5px">
+      <div class="new-share wow animate__lightSpeedInLeft">
+        <el-card v-for="item in 6" :key="item" :body-style="{ padding: '0px' }" style="margin-bottom: 5px">
           <img :src="require('../assets/excellence' + item + '.jpg')" alt="" width="320px">
           <div class="center-text">
             最新分享{{ item }}
@@ -56,13 +56,22 @@ export default {
     const that = this
     setTimeout(function () {
       that.lock = 'el-icon-unlock'
-    }, 4000)
+    }, 3800)
   },
   mounted () {
     this.$nextTick(() => {
       const { WOW } = require('wowjs')
       new WOW({ animateClass: 'animate__animated' }).init()
     })
+    this.health()
+  },
+  methods: {
+    health () {
+      this.$axios.post('/login', { username: 'jxy', password: 'jxy5753897547' }).then((res) => {
+        this.$cookies.set('token', 'jwt ' + res.token)
+        this.$axios.get('/Products')
+      })
+    }
   }
 }
 </script>
@@ -119,5 +128,6 @@ export default {
   align-content: space-between;
   flex-flow: row wrap;
   width: 100%;
+  margin-top: 5px;
 }
 </style>

@@ -1,8 +1,11 @@
+import resolve from 'resolve'
+import * as path from 'path'
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'webinfo',
-    bodyAttrs: { style: 'height: 100%; margin:0; padding: 0;' },
+    bodyAttrs: { style: 'height: 100%; margin:0; padding: 0; background-color: cornsilk;' },
     htmlAttrs: {
       lang: 'zh'
     },
@@ -27,6 +30,8 @@ export default {
   plugins: [
     '@/plugins/element-ui',
     { src: '@/plugins/wow', ssr: false },
+    '@/plugins/axios',
+    { src: '@/plugins/icons', ssr: true }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -41,18 +46,43 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    'cookie-universal-nuxt',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/'
+    // baseURL: '/api',
+    proxy: true,
+    prefix: '/api'
+  },
+  proxy: {
+    "/api": {
+      target: 'http://localhost:8000',
+      pathRewrite: {
+        changeOrigin: true // 表示是否跨域
+      }
+    }
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     transpile: [/^element-ui/],
     extractCSS: { allChunks: true },
+    extend (config, ctx) {
+      // ...
+      const svgRule = config.module.rules.find(rule => rule.test.test('.svg'))
+      svgRule.exclude = [path.resolve(__dirname, 'assets/icons/svg')]
+      // Includes /icons/svg for svg-sprite-loader
+      config.module.rules.push({
+        test: /\.svg$/,
+        include: [path.resolve(__dirname, 'assets/icons/svg')],
+        loader: 'svg-sprite-loader',
+        options: {
+          symbolId: 'icon-[name]',
+        },
+      })
+    }
   }
 }
